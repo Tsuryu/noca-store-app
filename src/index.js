@@ -13,10 +13,20 @@ let store = createStore(
 );
 //Esto es para habilitar Redux Dev Tools
 
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById("root")
-);
-registerServiceWorker();
+const startApp = () => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById("root")
+  );
+  registerServiceWorker();
+};
+
+setTimeout(function(){
+  if(!window.cordova) {
+    startApp();    
+  }
+}, 0);
+
+document.addEventListener('deviceready', startApp, false);

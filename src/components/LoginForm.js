@@ -17,7 +17,7 @@ class LoginForm extends React.Component {
         <form>
           <Input label="Usuario" id="username" />
           <Input label="Contraseña" id="password" type="password"/>
-          <NavLink exact className="btn btn-primary btn-lg btn-block" activeClassName="active" to="/home">
+          <NavLink exact className="btn btn-dark btn-lg btn-block" activeClassName="active" to="/home">
             Ingresar
           </NavLink>
         </form>
