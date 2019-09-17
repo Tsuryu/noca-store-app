@@ -9,35 +9,36 @@ import NotFound from "./components/NotFound";
 import Nav from "./components/Nav";
 
 function App() {
+  const wrapperWeb = <div>
+    <BrowserRouter>
+      <Nav/>
+      <div className="container">
+        <Switch>
+          <Route path="/home" exact component={Home} />
+          <Route path="/login" exact component={LoginForm} />
+          <Route path="/" exact component={LoginForm} />
+          <Route component={NotFound} />
+        </Switch>
+      </div>
+    </BrowserRouter>
+  </div>;
+
+  const wrapperMobile = <div>
+    <HashRouter>
+      <Nav/>
+      <div className="container">
+        <Switch>
+          <Route path="/home" exact component={Home} />
+          <Route path="/login" exact component={LoginForm} />
+          <Route path="/" exact component={LoginForm} />
+          <Route component={NotFound} />
+        </Switch>
+      </div>
+    </HashRouter>
+  </div>;
+
   return (
-    !window.Cordova ?
-    <div>
-      <BrowserRouter>
-        <Nav/>
-        <div className="container">
-          <Switch>
-            <Route path="/home" exact component={Home} />
-            <Route path="/login" exact component={LoginForm} />
-            <Route path="/" exact component={LoginForm} />
-            <Route component={NotFound} />
-          </Switch>
-        </div>
-      </BrowserRouter>
-    </div>
-    :
-    <div>
-      <HashRouter>
-        <Nav/>
-        <div className="container">
-          <Switch>
-            <Route path="/home" exact component={Home} />
-            <Route path="/login" exact component={LoginForm} />
-            <Route path="/" exact component={LoginForm} />
-            <Route component={NotFound} />
-          </Switch>
-        </div>
-      </HashRouter>
-    </div>
+    !window.Cordova ? wrapperWeb : wrapperMobile
   );
 }
 
