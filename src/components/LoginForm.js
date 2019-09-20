@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import Input from "./Input";
 import axios from "axios";
+import { showMessage } from "../actions.js";
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -13,8 +14,15 @@ class LoginForm extends React.Component {
   }
 
   handleClick = (e) => {
+    this.props.showMessageLocal('danger');
     e.preventDefault();
-    if(!this.props.username || !this.props.password){
+    if(!this.props.username){
+      this.props.showMessageLocal('danger', 'El usuario es requerido');
+      return;
+    }
+
+    if(!this.props.password){
+      this.props.showMessageLocal('danger', 'La contraseña es requerida');
       return;
     }
 
@@ -23,8 +31,11 @@ class LoginForm extends React.Component {
       this.props.history.push('/home');
     })
     .catch(e => {
-      console.log('error');
-      console.log(e);
+      if(e.response.status === 404){
+        this.props.showMessageLocal('danger', 'El usuario o contraseña es incorrecto');
+      } else {
+        this.props.showMessageLocal('danger', 'Error interno del servidor');
+      }
     });
   }
 
@@ -51,7 +62,11 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    showMessageLocal: (type, text) => {
+      return dispatch(showMessage({type, text}));
+    }
+  };
 };
 
 export default connect(

@@ -2,8 +2,10 @@ import { types } from "./actions";
 
 const initialState = {
   user: {
-    username: "sergio",
-    lastName: "velazquez"
+  }, 
+  appMessage: {
+    type: "danger",
+    text: undefined
   }
 };
 
@@ -15,6 +17,14 @@ const reducer = (state = initialState, action) => {
     return {
       ...state,
       user
+    };
+  }
+
+  if (action.type === types.SHOW_MESSAGE) {
+    const appMessage = {type: action.payload.type, text: action.payload.text}
+    return {
+      ...state,
+      appMessage 
     };
   }
 

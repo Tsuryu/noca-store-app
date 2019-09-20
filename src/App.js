@@ -7,11 +7,14 @@ import LoginForm from "./components/LoginForm";
 import Home from "./components/Home";
 import NotFound from "./components/NotFound";
 import Nav from "./components/Nav";
+import AppMessage from "./components/AppMessage";
 
 function App() {
   const wrapperWeb = <div>
+    
     <BrowserRouter>
       <Nav/>
+      <AppMessage></AppMessage>
       <div className="container">
         <Switch>
           <Route path="/home" exact component={Home} />
