@@ -18,7 +18,7 @@ class LoginForm extends React.Component {
       return;
     }
 
-    axios.get(`http://localhost:3005/user/${this.props.username}`, { headers: {"password": this.props.password}})
+    axios.get(`https://noca-store-mongo-web-services.herokuapp.com/user/${this.props.username}`, { headers: {"password": this.props.password}})
     .then(response => {
       this.props.history.push('/home');
     })
