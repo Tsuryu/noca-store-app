@@ -6,17 +6,20 @@ const initialState = {
   appMessage: {
     type: "danger",
     text: undefined
-  }
+  },
+  signupFormUser:{}
 };
 
 const reducer = (state = initialState, action) => {
-  if (action.type === types.LOGIN) {
-    const user = {...state.user};
-    user.username = action.payload.username ? action.payload.username : state.user.username;
-    user.password = action.payload.password ? action.payload.password : state.user.password;
+  if (action.type === types.HANDLE_INPUT_CHANGE) {
+    const formName = Object.keys(action.payload)[0];
+    const inputValue = action.payload[formName];
+    const auxForInput = {};
+    auxForInput[formName] =  {...state[formName], ...inputValue};
+    
     return {
       ...state,
-      user
+      ...auxForInput
     };
   }
 

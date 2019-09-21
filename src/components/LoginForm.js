@@ -14,17 +14,11 @@ class LoginForm extends React.Component {
   }
 
   handleClick = (e) => {
-    this.props.showMessageLocal('danger');
     e.preventDefault();
-    if(!this.props.username){
-      this.props.showMessageLocal('danger', 'El usuario es requerido');
-      return;
-    }
+    this.props.showMessageLocal();
 
-    if(!this.props.password){
-      this.props.showMessageLocal('danger', 'La contraseña es requerida');
-      return;
-    }
+    if(!this.props.username) return this.props.showMessageLocal('danger', 'El usuario es requerido');
+    if(!this.props.password) return this.props.showMessageLocal('danger', 'La contraseña es requerida');
 
     axios.get(`https://noca-store-mongo-web-services.herokuapp.com/user/${this.props.username}`, { headers: {"password": this.props.password}})
     .then(response => {
@@ -43,11 +37,20 @@ class LoginForm extends React.Component {
     return (
       <div className="app-body container">
         <form>
-          <Input label="Usuario" id="username" />
-          <Input label="Contraseña" id="password" type="password"/>
-          <NavLink exact className="btn btn-dark btn-lg btn-block" activeClassName="active" to="/home" onClick={this.handleClick} >
-            Ingresar
-          </NavLink>
+          <Input label="Usuario" id="username" stateObject="user" />
+          <Input label="Contraseña" id="password" type="password" stateObject="user" />
+          <div class="form-row">
+            <div class="col-6">
+              <NavLink exact className="btn btn-secondary btn-lg btn-block" activeClassName="active" to="/signup" >
+                Registrarse
+              </NavLink>
+            </div>
+            <div class="col-6">
+              <NavLink exact className="btn btn-dark btn-lg btn-block" activeClassName="active" to="/home" onClick={this.handleClick} >
+                Ingresar
+              </NavLink>
+            </div>
+          </div>
         </form>
       </div>
     );

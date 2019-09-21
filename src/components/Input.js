@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { login } from "../actions.js";
+import { handleInputChange } from "../actions.js";
 
 class Input extends React.Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class Input extends React.Component {
       value
     });
 
-    this.props.handleChangeLocal(value, this.props.id);
+    this.props.handleChangeLocal(value, this.props.id, this.props.stateObject);
   }
 
   render() {
@@ -36,10 +36,11 @@ const mapStateToProps = state => {
   
 const mapDispatchToProps = dispatch => {
   return {
-    handleChangeLocal: (text, field) => {
-      const user = {};
-      user[field] = text;
-      return dispatch(login(user));
+    handleChangeLocal: (text, field, stateObject) => {
+      const object = {};
+      object[stateObject] = {};
+      object[stateObject][field] = text;
+      return dispatch(handleInputChange(object));
     }
   };
 };

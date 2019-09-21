@@ -10,9 +10,10 @@ class AppMessage extends React.Component {
     }
 
     render() {
+        const paramClases = "alert alert-" + this.props.type;
         return (
             this.props.text ?
-            <div class="alert alert-danger" role="alert">
+            <div class={paramClases} role="alert">
                 {this.props.text}
             </div>
             :
