@@ -1,26 +1,31 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
+import ProductList from './products/ProductList';
+import './home.css';
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: ""
+      value: ''
     };
   }
 
   render() {
-    return <h1>Bienvenido {this.props.username}</h1>;
+    return (<div>
+      <h1 className="title">Bienvenido {this.props.username}</h1>
+      <ProductList />
+    </div>);
   }
 }
 
-const mapStateToProps = state => {
-    return {
-        username: state.user.username
-    };
+const mapStateToProps = (state) => {
+  return {
+    username: state.user.username
+  };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {};
 };
 

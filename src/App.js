@@ -12,7 +12,7 @@ import AppMessage from "./components/AppMessage";
 
 class App extends React.Component {
   render() {
-    const wrapperWeb = <div>
+    const wrapperWeb = <div className="app-background">
       
       <BrowserRouter>
         <Nav/>
@@ -29,7 +29,7 @@ class App extends React.Component {
       </BrowserRouter>
     </div>;
 
-    const wrapperMobile = <div>
+    const wrapperMobile = <div className="app-background">
       <HashRouter>
         <Nav/>
         <div className="container">

@@ -20,7 +20,7 @@ class LoginForm extends React.Component {
     if(!this.props.username) return this.props.showMessageLocal('danger', 'El usuario es requerido');
     if(!this.props.password) return this.props.showMessageLocal('danger', 'La contraseña es requerida');
 
-    axios.get(`https://noca-store-mongo-web-services.herokuapp.com/user/${this.props.username}`, { headers: {"password": this.props.password}})
+    axios.get(`http://localhost:3006/user/${this.props.username}`, { headers: {"password": this.props.password}})
     .then(response => {
       this.props.history.push('/home');
     })

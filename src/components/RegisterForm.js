@@ -25,7 +25,7 @@ class RegisterForm extends React.Component {
     if(!this.props.signupFormUser.username) return this.props.showMessageLocal('danger', 'El usuario es requerido');
     if(!this.props.signupFormUser.password) return this.props.showMessageLocal('danger', 'La contraseña es requerida');
 
-    axios.get(`https://noca-store-mongo-web-services.herokuapp.com/user/`, { headers: {"Content-Type": "application/json"}, body: this.props.signupFormUser})
+    axios.get(`http://localhost:3006/user/`, { headers: {"Content-Type": "application/json"}, body: this.props.signupFormUser})
     .then(response => {
       this.props.history.push('/login');
       this.props.showMessageLocal("success", "Registracion exitosa");
