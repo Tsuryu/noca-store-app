@@ -20,12 +20,15 @@ class LoginForm extends React.Component {
     if(!this.props.username) return this.props.showMessageLocal('danger', 'El usuario es requerido');
     if(!this.props.password) return this.props.showMessageLocal('danger', 'La contraseña es requerida');
 
-    axios.get(`http://localhost:3006/user/${this.props.username}`, { headers: {"password": this.props.password}})
+    axios.get(`http://localhost:3005/user/${this.props.username}`, { headers: {"password": this.props.password}})
     .then(response => {
       this.props.history.push('/home');
     })
     .catch(e => {
-      if(e.response.status === 404){
+      console.log(e);
+      if(!e.response){
+        this.props.showMessageLocal('danger', 'Error interno del servidor');
+      } else if(e.response.status && e.response.status === 404){
         this.props.showMessageLocal('danger', 'El usuario o contraseña es incorrecto');
       } else {
         this.props.showMessageLocal('danger', 'Error interno del servidor');

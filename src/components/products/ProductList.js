@@ -14,7 +14,7 @@ class ProductList extends React.Component {
 
   async componentDidMount() {
     try{
-      const response = await axios.get(`http://localhost:3006/product`);
+      const response = await axios.get(`http://localhost:3005/product`);
       this.setState({...this.state, products: response.data.products});
     } catch (e){
       console.log(e);
